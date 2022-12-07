@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-const Vis = () => {
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
+
+const App = () => { 
   return (
     <View style={styles.screen}>
       <SafeAreaView style={styles.safeArea}>
@@ -15,10 +21,9 @@ const Vis = () => {
           Welcome To React-Native-Camera Tutorial
         </Text>
       </View>
-      <RNCamera style={styles.rnCamera} />
       <View style={styles.cameraControl}>
         <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>New QR Scan</Text>
+          <Text style={styles.btnText}>Click On Camera</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,4 +51,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-export default Vis;
+export default App;
