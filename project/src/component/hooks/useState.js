@@ -30,7 +30,6 @@ const Count = () => {
           style={styles.btn}
           onPress={() => {
             increment(data);
-            alert(data);
           }}>
           <Text style={styles.txt}>enter value</Text>
         </TouchableOpacity>
@@ -41,7 +40,7 @@ const Count = () => {
           style={styles.btn}
           onPress={() => {
             increment(num + 1);
-            console.log(typeof(num));
+            console.log(typeof num);
           }}>
           <Text style={styles.txt}>Increase</Text>
         </TouchableOpacity>

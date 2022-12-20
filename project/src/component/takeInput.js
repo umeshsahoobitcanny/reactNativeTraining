@@ -5,10 +5,11 @@ const TakeData = () => {
   const [enterText, setEnter] = useState('');
   const [courseGoals, setList] = useState([]);
   function changeData(enteredText) {
-    setEnter(enterText);
+    setEnter(enteredText);
+    console.log(enterText);
   }
   function addText() {
-    setList(data => [...data, enterText]);
+    setList(x => [...x, enterText]);
   }
   return (
     <View style={styles.appContainer}>
@@ -22,12 +23,15 @@ const TakeData = () => {
           onChangeText={changeData}
         />
 
-        <Button title="Add Task" onPress={addText} />
+        <Button style={styles.btn} title="Add Task" onPress={addText} />
       </View>
       <View style={styles.taskContainer}>
-        {courseGoals.map((d)=> 
-          <Text style={styles.txt}>{d}</Text>
-        )}
+        <Text style={styles.list}>Item List</Text>
+        {courseGoals.map(d => (
+          <Text style={styles.newAdd} key={d}>
+            {d}
+          </Text>
+        ))}
       </View>
     </View>
   );
@@ -38,7 +42,7 @@ export default TakeData;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 25,
     paddingHorizontal: 16,
   },
   inputContainer: {
@@ -48,27 +52,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    borderBottomColor: 'black',
   },
+
   textInput: {
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: 'black',
     width: '70%',
     marginRight: 8,
     padding: 8,
+    borderRadius: 10,
   },
   taskContainer: {
     flex: 5,
+    backgroundColor: '#e8e8e8',
+    borderRadius: 30,
+    padding: 20,
   },
   txt: {
     marginBottom: 20,
-    color: '#0362fc',
+    color: '#000000',
     fontSize: 24,
     fontWeight: '700',
+    borderBottomWidth: 1,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  newAdd: {
+    color: 'black',
+    padding: 2,
+    paddingHorizontal: 2,
+    fontWeight: '700',
+    fontSize: 18,
+  },
+  list: {
+    color: 'black',
+    padding: 2,
+    paddingHorizontal: 2,
+    fontWeight: '700',
+    fontSize: 18,
+    alignSelf: 'center',
+    borderBottomWidth: 4,
   },
 });
