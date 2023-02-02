@@ -8,13 +8,17 @@ import {
   Platform,
 } from 'react-native';
 import React, {useState} from 'react';
+import {addTask} from '../../redux/action';
+import {useDispatch} from 'react-redux';
+
 const TakeData = props => {
   const [enterValue, setValue] = useState('');
-
-  const handleAddTask = value => {
-    props.addTask(value);
-    setValue(null);
-  };
+  const dispatch = useDispatch();
+  // const handleAddTask = value => {
+  //   props.addTask(value);
+  //   setValue('');
+  //   // console.log(value);
+  // };
 
   return (
     <View style={styles.appContainer}>
@@ -27,6 +31,7 @@ const TakeData = props => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.textInput}
+            value={enterValue}
             placeholder="your current task!"
             onChangeText={text => setValue(text)}
           />
@@ -34,7 +39,8 @@ const TakeData = props => {
           <Button
             style={styles.btn}
             title="Add Task"
-            onPress={() => handleAddTask(enterValue)}
+            // onPress={() => handleAddTask(enterValue)}
+            onPress={() => dispatch(addTask(enterValue), setValue(' '))}
           />
         </View>
       </KeyboardAvoidingView>
@@ -52,6 +58,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    color: 'black',
   },
   textInput: {
     borderWidth: 1,

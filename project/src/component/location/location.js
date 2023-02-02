@@ -30,7 +30,7 @@ const requestLocationPermission = async () => {
       return false;
     }
   } catch (err) {
-    return false;
+    return false; 
   }
 };
 const App = () => {
@@ -40,11 +40,11 @@ const App = () => {
   const getLocation = () => {
     const result = requestLocationPermission();
     result.then(res => {
-      console.log('res is:', res);
+      console.log('10,res is:', res);
       if (res) {
         Geolocation.getCurrentPosition(
           position => {
-            console.log(position);
+            console.log(12, position);
             setLocation(position);
           },
           error => {

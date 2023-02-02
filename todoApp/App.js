@@ -1,8 +1,6 @@
 import React from 'react';
-
 import Data from './src/components/data';
-
-const MyComponent = () => {
+const MyComponent = props => {
   return (
     <>
       <Data />

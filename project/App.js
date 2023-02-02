@@ -7,9 +7,19 @@ import Input from './src/component/input.js';
 import SectionListExample from './src/component/sectionList.js';
 import ImageSet from './src/component/image.js';
 import TakeData from './src/component/takeInput.js';
+import UseReducer from './src/component/hooks/useReducer';
+// import Redux from './src/component/redux/reduxOne';
+import Redux from './src/component/redux/reduxTwo';
+
 // import Drwawer from './src/component/navigation/navigationDrawer.js';
 // import Navigation from './src/component/navigation/navigation';
+import Animated from './src/component/animation/animated.js';
+import {Provider} from 'react-redux';
+
+import {NavigationContainer} from '@react-navigation/native';
+import {List} from './src/component/redux/listing/product';
+
 const App = () => {
-  return <TakeData />;
+  return <List />;
 };
 export default App;

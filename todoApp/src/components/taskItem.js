@@ -31,14 +31,14 @@ const Task = props => {
         <TouchableOpacity
           style={styles.close}
           onPress={() => props.deleteTask()}>
-          <Icon name="edit" size={20} color="#900" />
+          <Icon name="delete" size={20} color="#900" />
         </TouchableOpacity>
       </View>
-      <View style={styles.cicular}>
+      {/* <View style={styles.cicular}>
         <TouchableOpacity style={styles.edit}>
-          <Icon name="close" size={20} color="#900" />
+          <Icon name="delete" size={20} color="#900" />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

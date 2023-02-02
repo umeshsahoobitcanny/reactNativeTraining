@@ -2,36 +2,37 @@ import {StyleSheet, Text, View, ScrollView, Keyboard} from 'react-native';
 import React, {useState} from 'react';
 import TaskInputField from './taskInputField';
 import TaskItem from './taskItem';
-
+import {useSelector} from 'react-redux';
 const App = () => {
-  const [courseGoals, setList] = useState([]);
+  // const [courseGoals, setList] = useState([]);
 
-  const addTask = task => {
-    if (task == null) return;
-    setList([...courseGoals, task]);
-    Keyboard.dismiss();
-  };
-  // const editTask=(editIndex)=>
-  // {
-  //   setList(courseGoals.map((value,index)=>))
-  // }
-  const deleteTask = deleteIndex => {
-    setList(courseGoals.filter((value, index) => index != deleteIndex));
-  };
+  const courseGoals = useSelector(state => {
+    console.log(10, state);
+    return state.todoReducer;
+  });
+  // const addTask = task => {
+  //   // if (task == null) return;
+  //   setList([...courseGoals, task]);
+  //   Keyboard.dismiss();
+  // };
+  // const deleteTask = deleteIndex => {
+  //   setList(courseGoals.filter((value, index) => index != deleteIndex));
+  // };
   return (
     <View style={styles.appContainer}>
-      <TaskInputField addTask={addTask} />
+      {/* <TaskInputField addTask={addTask} /> */}
+      <TaskInputField />
       <ScrollView keyboardShouldPersistTaps="handled">
         <View style={styles.taskWrapper}>
           <Text style={styles.sectionTitle}>Today's tasks</Text>
           <View style={styles.items}>
-            {courseGoals.map((item, index) => {
+            {courseGoals?.map((item, index) => {
               return (
                 <View key={index}>
                   <TaskItem
-                    index={index}
+                    // index={index + 1}
                     text={item}
-                    deleteTask={() => deleteTask(index)}
+                    // deleteTask={() => deleteTask(index)}
                     // editTask={()=>editTask(index)}
                   />
                 </View>
