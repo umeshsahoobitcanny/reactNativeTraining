@@ -18,8 +18,10 @@ import {Provider} from 'react-redux';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {List} from './src/component/redux/listing/product';
+import Fetch from './src/component/api/fetch.js';
+import Alarm from './src/component/alert.js';
 
 const App = () => {
-  return <List />;
+  return <Alarm />;
 };
 export default App;

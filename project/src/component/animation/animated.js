@@ -1,26 +1,52 @@
-import {View, Text, StyleSheet, Animated} from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
+import {Animated, View, StyleSheet, PanResponder, Text} from 'react-native';
 
-const Ani = () => {
-  const pos = new Animated.ValueXY({x: 0, y: 0});
-  console.log(pos);
-  Animated.timing(pos, {
-    toValue: {x: 200, y: 500},
-    duration: 2000,
-  }).start();
+const App = () => {
+  const pan = useRef(new Animated.ValueXY()).current;
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([null, {dx: pan.x, dy: pan.y}]),
+      onPanResponderRelease: () => {
+        Animated.spring(pan, {
+          toValue: {x: 0, y: 0},
+          useNativeDriver: true,
+        }).start();
+      },
+    }),
+  ).current;
+
   return (
-    <View style={styles.main}>
-      <Animated.View style={{height: 80}}>
-        <Text>umesh</Text>
+    <View style={styles.container}>
+      <Text style={styles.titleText}>Drag & Release this box!</Text>
+      <Animated.View
+        style={{
+          transform: [{translateX: pan.x}, {translateY: pan.y}],
+        }}
+        {...panResponder.panHandlers}>
+        <View style={styles.box} />
       </Animated.View>
     </View>
   );
 };
 
-export default Ani;
 const styles = StyleSheet.create({
-  main: {
+  container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  small: {},
+  titleText: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontWeight: 'bold',
+  },
+  box: {
+    height: 150,
+    width: 150,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+  },
 });
+
+export default App;
